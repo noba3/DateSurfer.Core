@@ -1,9 +1,8 @@
-﻿using DateSurfer.Core.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using DateSurfer.Core.Domain.Entities;
 using DateSurfer.Core.Domain.Enums;
 using DateSurfer.Core.Domain.Interfaces;
 using DateSurfer.Core.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Metrics;
 
 namespace DateSurfer.Core.Infrastructure.Repositories;
 
@@ -16,7 +15,7 @@ public class FeeRuleRepository : IFeeRuleRepository
         _context = context;
     }
 
-    public async Task<FeeRule?> GetActiveRuleAsync(Country country, MembershipType membershipType, int age)
+    public async Task<FeeRule?> GetActiveRuleAsync(string country, MembershipType membershipType, int age)
     {
         return await _context.FeeRules
             .Where(r => r.Country == country &&

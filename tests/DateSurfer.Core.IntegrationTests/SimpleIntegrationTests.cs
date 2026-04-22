@@ -28,14 +28,14 @@ public class SimpleIntegrationTests
             Username = "testuser",
             Email = "test@example.com",
             DateOfBirth = new DateTime(1990, 1, 1),
-            Country = Country.Germany,
+            Country = "Germany",
             CreatedAt = DateTime.UtcNow
         };
         dbContext.Users.Add(user);
 
         var feeRule = new DateSurfer.Core.Domain.Entities.FeeRule
         {
-            Country = Country.Germany,
+            Country = "Germany",
             MembershipType = MembershipType.Premium,
             MinAge = 18,
             MaxAge = 99,
@@ -72,14 +72,14 @@ public class SimpleIntegrationTests
             Username = "testuser",
             Email = "test@example.com",
             DateOfBirth = new DateTime(2000, 6, 15),
-            Country = Country.USA,
+            Country = "USA",
             CreatedAt = DateTime.UtcNow
         };
         dbContext.Users.Add(user);
 
         var feeRule = new DateSurfer.Core.Domain.Entities.FeeRule
         {
-            Country = Country.USA,
+            Country = "USA",
             MembershipType = MembershipType.Premium,
             MinAge = 18,
             MaxAge = 99,

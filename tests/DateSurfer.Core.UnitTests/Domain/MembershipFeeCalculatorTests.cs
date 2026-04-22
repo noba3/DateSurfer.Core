@@ -29,7 +29,7 @@ public class MembershipFeeCalculatorTests
         var user = new User
         {
             Id = 1,
-            Country = Country.Germany,
+            Country = "Germany",  // ← String, nicht Enum!
             DateOfBirth = birthDate
         };
 
@@ -39,7 +39,7 @@ public class MembershipFeeCalculatorTests
 
         var rule = new FeeRule
         {
-            Country = Country.Germany,
+            Country = "Germany",  // ← String, nicht Enum!
             MembershipType = MembershipType.Premium,
             MinAge = 18,
             MaxAge = 99,
@@ -48,7 +48,7 @@ public class MembershipFeeCalculatorTests
         };
 
         _userRepositoryMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(user);
-        _ruleRepositoryMock.Setup(r => r.GetActiveRuleAsync(Country.Germany, MembershipType.Premium, expectedAge))
+        _ruleRepositoryMock.Setup(r => r.GetActiveRuleAsync("Germany", MembershipType.Premium, expectedAge))
             .ReturnsAsync(rule);
 
         // Act

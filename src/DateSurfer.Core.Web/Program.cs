@@ -1,11 +1,14 @@
-using Microsoft.EntityFrameworkCore;
-using DateSurfer.Core.Infrastructure.Data;
 using DateSurfer.Core.Application.Interfaces;
 using DateSurfer.Core.Application.Services;
 using DateSurfer.Core.Domain.Interfaces;
+using DateSurfer.Core.Infrastructure.Data;
 using DateSurfer.Core.Infrastructure.Repositories;
+using DateSurfer.Core.Web.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -18,6 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IFeeRuleRepository, FeeRuleRepository>();
 builder.Services.AddScoped<IMembershipFeeCalculator, MembershipFeeCalculator>();
+builder.Services.AddScoped<ITestUserService, TestUserService>();
 
 // MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(

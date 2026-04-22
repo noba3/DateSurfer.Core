@@ -5,5 +5,5 @@ namespace DateSurfer.Core.Domain.Interfaces;
 
 public interface IFeeRuleRepository
 {
-    Task<FeeRule?> GetActiveRuleAsync(Country country, MembershipType membershipType, int age);
+    Task<FeeRule?> GetActiveRuleAsync(string country, MembershipType membershipType, int age);
 }

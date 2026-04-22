@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DateSurfer.Core.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260421190454_AddUSAFeeRules")]
-    partial class AddUSAFeeRules
+    [Migration("20260422045701_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,40 @@ namespace DateSurfer.Core.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DateSurfer.Core.Domain.Entities.ContactMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactMessages");
+                });
+
             modelBuilder.Entity("DateSurfer.Core.Domain.Entities.FeeRule", b =>
                 {
                     b.Property<int>("Id")
@@ -33,8 +67,10 @@ namespace DateSurfer.Core.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Country")
-                        .HasColumnType("int");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -60,7 +96,7 @@ namespace DateSurfer.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Country = 0,
+                            Country = "Germany",
                             IsActive = true,
                             MaxAge = 99,
                             MembershipType = 0,
@@ -70,7 +106,7 @@ namespace DateSurfer.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            Country = 0,
+                            Country = "Germany",
                             IsActive = true,
                             MaxAge = 99,
                             MembershipType = 1,
@@ -80,7 +116,7 @@ namespace DateSurfer.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Country = 0,
+                            Country = "Germany",
                             IsActive = true,
                             MaxAge = 99,
                             MembershipType = 2,
@@ -90,7 +126,7 @@ namespace DateSurfer.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            Country = 3,
+                            Country = "USA",
                             IsActive = true,
                             MaxAge = 99,
                             MembershipType = 0,
@@ -100,22 +136,12 @@ namespace DateSurfer.Core.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            Country = 3,
+                            Country = "USA",
                             IsActive = true,
                             MaxAge = 99,
                             MembershipType = 1,
                             MinAge = 18,
                             MonthlyFee = 34.99m
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Country = 3,
-                            IsActive = true,
-                            MaxAge = 99,
-                            MembershipType = 2,
-                            MinAge = 18,
-                            MonthlyFee = 69.99m
                         });
                 });
 
@@ -155,8 +181,10 @@ namespace DateSurfer.Core.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Country")
-                        .HasColumnType("int");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");

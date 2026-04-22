@@ -1,23 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <ItemGroup>
-    <ProjectReference Include="..\DateSurfer.Core.Application\DateSurfer.Core.Application.csproj" />
-    <ProjectReference Include="..\DateSurfer.Core.Infrastructure\DateSurfer.Core.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DateSurfer.Core.Application\DateSurfer.Core.Application.csproj" />
+    <ProjectReference Include="..\DateSurfer.Core.Infrastructure\DateSurfer.Core.Infrastructure.csproj" />
+    <ProjectReference Include="..\DateSurfer.Core.Domain\DateSurfer.Core.Domain.csproj" />  <!-- ← DAS HINZUFÜGEN -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+  </ItemGroup>
 
 </Project>

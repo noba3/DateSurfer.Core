@@ -2,13 +2,13 @@
 
 namespace DateSurfer.Core.Domain.Entities;
 
-public class User  // ← MUSS public sein
+public class User
 {
     public int Id { get; set; }
     public string Username { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public DateTime DateOfBirth { get; set; }
-    public Country Country { get; set; }
+    public string Country { get; set; } = string.Empty;  // ← Jetzt string, nicht mehr enum!
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public Membership? Membership { get; set; }

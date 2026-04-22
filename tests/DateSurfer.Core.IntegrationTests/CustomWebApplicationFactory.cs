@@ -49,7 +49,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 Username = "testuser1",
                 Email = "test1@example.com",
                 DateOfBirth = new DateTime(1990, 1, 1),
-                Country = Country.Germany,
+                Country = "Germany",
                 CreatedAt = DateTime.UtcNow
             },
             new User
@@ -58,7 +58,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 Username = "testuser2",
                 Email = "test2@example.com",
                 DateOfBirth = new DateTime(2000, 6, 15),
-                Country = Country.USA,
+                Country = "USA",
                 CreatedAt = DateTime.UtcNow
             }
         );
@@ -68,7 +68,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             new FeeRule
             {
                 Id = 1,
-                Country = Country.Germany,
+                Country = "Germany",
                 MembershipType = MembershipType.Premium,
                 MinAge = 18,
                 MaxAge = 99,
@@ -78,7 +78,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             new FeeRule
             {
                 Id = 2,
-                Country = Country.USA,
+                Country = "USA",
                 MembershipType = MembershipType.Premium,
                 MinAge = 18,
                 MaxAge = 99,
@@ -88,7 +88,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             new FeeRule
             {
                 Id = 3,
-                Country = Country.Germany,
+                Country = "Germany",
                 MembershipType = MembershipType.Basic,
                 MinAge = 18,
                 MaxAge = 99,

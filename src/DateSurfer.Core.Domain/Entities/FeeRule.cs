@@ -2,10 +2,10 @@
 
 namespace DateSurfer.Core.Domain.Entities;
 
-public class FeeRule  // ← MUSS public sein
+public class FeeRule
 {
     public int Id { get; set; }
-    public Country Country { get; set; }
+    public string Country { get; set; } = string.Empty;  // ← Jetzt string!
     public MembershipType MembershipType { get; set; }
     public int MinAge { get; set; }
     public int MaxAge { get; set; }

@@ -9,9 +9,10 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<Membership> Memberships { get; set; }
-    public DbSet<FeeRule> FeeRules { get; set; }
+    public DbSet<User> Users => Set<User>();
+    public DbSet<Membership> Memberships => Set<Membership>();
+    public DbSet<FeeRule> FeeRules => Set<FeeRule>();
+    public DbSet<ContactMessage> ContactMessages => Set<ContactMessage>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,7 +23,7 @@ public class ApplicationDbContext : DbContext
             entity.HasIndex(u => u.Email).IsUnique();
             entity.Property(u => u.Username).IsRequired().HasMaxLength(100);
             entity.Property(u => u.Email).IsRequired().HasMaxLength(200);
-            entity.Property(u => u.Country).HasConversion<int>();
+            entity.Property(u => u.Country).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Membership>(entity =>
@@ -36,20 +37,18 @@ public class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<FeeRule>(entity =>
         {
-            entity.Property(r => r.Country).HasConversion<int>();
+            entity.Property(r => r.Country).HasMaxLength(50);
             entity.Property(r => r.MembershipType).HasConversion<int>();
-            entity.Property(r => r.MonthlyFee).HasPrecision(18, 2);  // 18 Stellen insgesamt, davon 2 Nachkommastellen
+            entity.Property(r => r.MonthlyFee).HasPrecision(18, 2);
         });
 
-        // Seed Fee Rules
+        // Seed Fee Rules (Country als string)
         modelBuilder.Entity<FeeRule>().HasData(
-            new FeeRule { Id = 1, Country = Country.Germany, MembershipType = MembershipType.Basic, MinAge = 18, MaxAge = 99, MonthlyFee = 9.99m, IsActive = true },
-            new FeeRule { Id = 2, Country = Country.Germany, MembershipType = MembershipType.Premium, MinAge = 18, MaxAge = 99, MonthlyFee = 29.99m, IsActive = true },
-            new FeeRule { Id = 3, Country = Country.Germany, MembershipType = MembershipType.VIP, MinAge = 18, MaxAge = 99, MonthlyFee = 59.99m, IsActive = true },
-        // USA Fee Rules
-            new FeeRule { Id = 4, Country = Country.USA, MembershipType = MembershipType.Basic, MinAge = 18, MaxAge = 99, MonthlyFee = 12.99m, IsActive = true },
-            new FeeRule { Id = 5, Country = Country.USA, MembershipType = MembershipType.Premium, MinAge = 18, MaxAge = 99, MonthlyFee = 34.99m, IsActive = true },
-            new FeeRule { Id = 6, Country = Country.USA, MembershipType = MembershipType.VIP, MinAge = 18, MaxAge = 99, MonthlyFee = 69.99m, IsActive = true }
+            new FeeRule { Id = 1, Country = "Germany", MembershipType = MembershipType.Basic, MinAge = 18, MaxAge = 99, MonthlyFee = 9.99m, IsActive = true },
+            new FeeRule { Id = 2, Country = "Germany", MembershipType = MembershipType.Premium, MinAge = 18, MaxAge = 99, MonthlyFee = 29.99m, IsActive = true },
+            new FeeRule { Id = 3, Country = "Germany", MembershipType = MembershipType.VIP, MinAge = 18, MaxAge = 99, MonthlyFee = 59.99m, IsActive = true },
+            new FeeRule { Id = 4, Country = "USA", MembershipType = MembershipType.Basic, MinAge = 18, MaxAge = 99, MonthlyFee = 12.99m, IsActive = true },
+            new FeeRule { Id = 5, Country = "USA", MembershipType = MembershipType.Premium, MinAge = 18, MaxAge = 99, MonthlyFee = 34.99m, IsActive = true }
         );
     }
 }

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "DateSurfer.Core.Infrastructure": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:17325;http://localhost:17326"
+    }
+  }
+}
